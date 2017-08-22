@@ -51,7 +51,7 @@ exports.config = {
     sass: {
       options: {
         includePaths: [
-          '/assets/node_modules/foundation-sites/scss',
+          'node_modules/foundation-sites/scss',
         ]
       }
     }
