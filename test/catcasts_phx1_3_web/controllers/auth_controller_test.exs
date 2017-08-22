@@ -3,10 +3,9 @@ defmodule CatcastsPhx13Web.AuthControllerTest do
   alias CatcastsPhx13Web.Repo
   alias CatcastsPhx13Web.User
 
-  @ueberauth_auth %{
-  credentials: %{token: "fdsnoafhnoofh08h38h"},
-  info: %{email: "batman@example.com", first_name: "Bruce", last_name: "Wayne"},
-  provider: :google}
+  @ueberauth_auth %{credentials: %{token: "fdsnoafhnoofh08h38h"},
+                    info: %{email: "batman@example.com", first_name: "Bruce", last_name: "Wayne"},
+                    provider: :google}
 
   test "redirects user to Google for authentication", %{conn: conn} do
     conn = get conn, "/auth/google?scope=email%20profile"
