@@ -2,6 +2,7 @@ defmodule CatcastsPhx13Web.AuthControllerTest do
   use CatcastsPhx13Web.ConnCase
   alias CatcastsPhx13.Repo
   alias CatcastsPhx13.User
+  import CatcastsPhx13.Factory
 
   @ueberauth_auth %{credentials: %{token: "fdsnoafhnoofh08h38h"},
                     info: %{email: "batman@example.com", first_name: "Bruce", last_name: "Wayne"},
@@ -20,5 +21,13 @@ defmodule CatcastsPhx13Web.AuthControllerTest do
     users = User |> Repo.all
     assert Enum.count(users) == 1
     assert get_flash(conn, :info) == "Thank you for signing in!"
+  end
+
+  test "signs out user", %{conn: conn} do
+    user = insert(:user)
+
+    conn = conn
+    |> assign(:user, user)
+    |> get("/auth/signout")
   end
 end

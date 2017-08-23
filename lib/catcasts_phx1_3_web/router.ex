@@ -7,6 +7,7 @@ defmodule CatcastsPhx13Web.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug CatcastsPhx13.Plugs.SetUser
   end
 
   pipeline :api do
@@ -22,6 +23,7 @@ defmodule CatcastsPhx13Web.Router do
   scope "/auth", CatcastsPhx13Web do
     pipe_through :browser
 
+    get "/signout", AuthController, :delete
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :new
   end
