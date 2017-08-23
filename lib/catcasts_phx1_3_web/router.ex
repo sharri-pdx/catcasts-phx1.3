@@ -17,6 +17,7 @@ defmodule CatcastsPhx13Web.Router do
   scope "/", CatcastsPhx13Web do
     pipe_through :browser # Use the default browser stack
 
+    resources "/videos", VideoController, except: [:edit, :update]
     get "/", PageController, :index
   end
 

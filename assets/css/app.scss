@@ -1,3 +1,5 @@
 /* This file is for your main application css. */
+@import "settings";
 @import "foundation";
 @include foundation-everything;
+@include foundation-grid;
