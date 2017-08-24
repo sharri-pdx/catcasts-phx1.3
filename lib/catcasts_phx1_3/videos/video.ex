@@ -2,6 +2,7 @@ defmodule CatcastsPhx13.Videos.Video do
   use Ecto.Schema
   import Ecto.Changeset
   alias CatcastsPhx13.Videos.Video
+  alias CatcastsPhx13.User
 
 
   schema "videos" do
@@ -10,7 +11,7 @@ defmodule CatcastsPhx13.Videos.Video do
     field :title, :string
     field :video_id, :string
     field :view_count, :integer
-    field :user_id, :id
+    belongs_to :user, User
 
     timestamps()
   end

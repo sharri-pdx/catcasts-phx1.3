@@ -1,14 +1,23 @@
 defmodule CatcastsPhx13Web.VideoControllerTest do
   use CatcastsPhx13Web.ConnCase
 
-  alias CatcastsPhx13.Videos
+  import CatcastsPhx13.Factory
 
-  @create_attrs %{duration: "some duration", thumbnail: "some thumbnail", title: "some title", video_id: "some video_id", view_count: 42}
-  @update_attrs %{duration: "some updated duration", thumbnail: "some updated thumbnail", title: "some updated title", video_id: "some updated video_id", view_count: 43}
-  @invalid_attrs %{duration: nil, thumbnail: nil, title: nil, video_id: nil, view_count: nil}
+  alias CatcastsPhx13.Videos
+  alias CatcastsPhx13.Videos.Video
+
+  @create_attrs %{video_id: "https://www.youtube.com/watch?v=wZZ7oFKsKzY"}
+  @invalid_attrs %{video_id: ""}
+  @full_attrs %{
+      duration: "PT2M2S",
+      thumbnail: "https://i.ytimg.com/vi/1rlSjdnAKY4/hqdefault.jpg",
+      title: "Super Troopers (2/5) Movie CLIP - The Cat Game (2001) HD",
+      video_id: "1rlSjdnAKY4",
+      view_count: 658281
+    }
 
   def fixture(:video) do
-    {:ok, video} = Videos.create_video(@create_attrs)
+    {:ok, video} = Videos.create_video(@full_attrs)
     video
   end
 
@@ -28,17 +37,25 @@ defmodule CatcastsPhx13Web.VideoControllerTest do
 
   describe "create video" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post conn, video_path(conn, :create), video: @create_attrs
+      user = insert(:user)
 
-      assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == video_path(conn, :show, id)
+      conn = conn
+      |> assign(:user, user)
+      |> post(video_path(conn, :create), video: @create_attrs)
 
-      conn = get conn, video_path(conn, :show, id)
-      assert html_response(conn, 200) =~ "Show Video"
+      video = Video |> Ecto.Query.last |> CatcastsPhx13.Repo.one
+      assert redirected_to(conn) == video_path(conn, :show, video)
+      assert get_flash(conn, :info) == "Video created successfully."
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post conn, video_path(conn, :create), video: @invalid_attrs
+      user = insert(:user)
+
+      # conn = post conn, video_path(conn, :create), video: @invalid_attrs
+      conn = conn
+             |> assign(:user, user)
+             |> post(video_path(conn, :create), video: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Add a video"
     end
   end
