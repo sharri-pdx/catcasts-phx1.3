@@ -59,7 +59,7 @@ defmodule CatcastsPhx13Web.VideoController do
           |> put_flash(:info, "Video created successfully.")
           |> redirect(to: video_path(conn, :show, video))
         {:error, _video} ->
-          video = Catcasts.Video |> Catcasts.Repo.get_by(video_id: video_id)
+          video = CatcastsPhx13.Video |> CatcastsPhx13.Repo.get_by(video_id: video_id)
           conn
           |> put_flash(:info, "Video has already been created.")
           |> redirect(to: video_path(conn, :show, video))

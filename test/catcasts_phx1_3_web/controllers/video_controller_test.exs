@@ -17,8 +17,17 @@ defmodule CatcastsPhx13Web.VideoControllerTest do
     }
 
   def fixture(:video) do
-    {:ok, video} = Videos.create_video(@full_attrs)
-    video
+    user = insert(:user)
+    video = CatcastsPhx13.Repo.insert! %Video{
+      duration: "PT2M2S",
+      thumbnail: "https://i.ytimg.com/vi/1rlSjdnAKY4/hqdefault.jpg",
+      title: "Super Troopers (2/5) Movie CLIP - The Cat Game (2001) HD",
+      video_id: "1rlSjdnAKY4",
+      view_count: 658281,
+      user_id: user.id
+    }
+
+    {:ok, video: video, user: user}
   end
 
   describe "index" do
@@ -63,7 +72,7 @@ defmodule CatcastsPhx13Web.VideoControllerTest do
   describe "delete video" do
     setup [:create_video]
 
-    test "deletes chosen video", %{conn: conn, video: video} do
+    test "deletes chosen video", %{conn: conn, video: video, user: user} do
       conn = delete conn, video_path(conn, :delete, video)
       assert redirected_to(conn) == video_path(conn, :index)
       assert_error_sent 404, fn ->
@@ -73,7 +82,6 @@ defmodule CatcastsPhx13Web.VideoControllerTest do
   end
 
   defp create_video(_) do
-    video = fixture(:video)
-    {:ok, video: video}
+    {:ok, video: video, user: user} = fixture(:video)
   end
 end
