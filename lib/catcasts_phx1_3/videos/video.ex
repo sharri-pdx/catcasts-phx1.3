@@ -9,7 +9,7 @@ defmodule CatcastsPhx13.Videos.Video do
     field :duration, :string
     field :thumbnail, :string
     field :title, :string
-    field :video_id, :string
+    field :video_id, :string, unique: true
     field :view_count, :integer
     belongs_to :user, User
 
@@ -21,5 +21,6 @@ defmodule CatcastsPhx13.Videos.Video do
     video
     |> cast(attrs, [:video_id, :title, :duration, :thumbnail, :view_count])
     |> validate_required([:video_id, :title, :duration, :thumbnail, :view_count])
+    |> unique_constraint(:video_id)
   end
 end

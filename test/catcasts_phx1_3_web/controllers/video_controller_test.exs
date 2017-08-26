@@ -5,7 +5,7 @@ defmodule CatcastsPhx13Web.VideoControllerTest do
 
   alias CatcastsPhx13.Videos.Video
 
-  @create_attrs %{video_id: "https://www.youtube.com/watch?v=wZZ7oFKsKzY"}
+  @create_attrs %{video_id: "https://www.youtube.com/watch?v=1rlSjdnAKY4"}
   @invalid_attrs %{video_id: ""}
 
   def fixture(:video) do
