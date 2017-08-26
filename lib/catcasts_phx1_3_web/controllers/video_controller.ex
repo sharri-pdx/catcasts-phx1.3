@@ -1,14 +1,19 @@
 defmodule CatcastsPhx13Web.VideoController do
   use CatcastsPhx13Web, :controller
+  use Rummage.Phoenix.Controller
 
   alias CatcastsPhx13.Videos
   alias CatcastsPhx13.Videos.{Video, YoutubeData}
 
   plug :check_video_owner when action in [:delete]
 
-  def index(conn, _params) do
-    videos = Videos.list_videos()
-    render(conn, "index.html", videos: videos)
+  def index(conn, params) do
+    {query, rummage} = Video
+    |> Video.rummage(params["rummage"])
+
+  videos = CatcastsPhx13.Repo.all(query)
+
+  render(conn, "index.html", videos: videos, rummage: rummage)
   end
 
   def new(conn, _params) do

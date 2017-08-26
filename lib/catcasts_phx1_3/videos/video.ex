@@ -4,6 +4,7 @@ defmodule CatcastsPhx13.Videos.Video do
   alias CatcastsPhx13.Videos.Video
   alias CatcastsPhx13.User
 
+  use Rummage.Ecto
 
   schema "videos" do
     field :duration, :string

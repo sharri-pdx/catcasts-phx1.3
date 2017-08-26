@@ -1,6 +1,17 @@
 <div class="grid video-index">
   <div class="medium-8 medium-offset-2 columns">
     <div class="callout secondary">
+      <div class="callout secondary">
+        <p>
+          Sort by: <%= sort_link @conn, @rummage, [field: :title, ci: true] %> ~
+          <%= sort_link @conn, @rummage, [field: :view_count] %> ~
+          <%= sort_link @conn, @rummage, [field: :duration] %>
+        </p>
+        <p>
+          <%= search_form(@conn, @rummage, [fields: [title: %{label: "", search_type: "ilike"},],
+                                            button_class: "button"]) %>
+        </p>
+      </div>
       <h2 class="text-center">
         Cat Videos
       </h2>
@@ -20,6 +31,7 @@
           </div>
         </div>
       <% end %>
+      <%= pagination_link(@conn, @rummage) %>
     </div>
   </div>
 </div>
