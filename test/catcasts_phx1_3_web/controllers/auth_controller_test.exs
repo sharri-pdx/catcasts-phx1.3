@@ -29,5 +29,8 @@ defmodule CatcastsPhx13Web.AuthControllerTest do
     conn = conn
     |> assign(:user, user)
     |> get("/auth/signout")
+    |> get("/")
+
+    assert conn.assigns.user == nil
   end
 end
