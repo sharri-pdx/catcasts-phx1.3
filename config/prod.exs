@@ -24,7 +24,7 @@ config :catcasts_phx1_3, CatcastsPhx13Web.Endpoint,
 config :logger, level: :info
 
 # Configure your database
-config :catcasts, CatcastsPhx13.Repo,
+config :catcasts_phx1_3, CatcastsPhx13.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
