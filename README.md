@@ -6,9 +6,10 @@ I have updated my Elixir Phoenix tutorial. It is upgraded to Phoenix 1.3, Elixir
 1.5.1. I have fixed some grammar errors (like using "are" instead of "our"... ugh!)
 and refactored the code.
 
-Note: if you are referencing this repo from the tutorial, anywhere you see
-`catcasts_phx13` or `catcasts_phx1_3` would be `catcasts` in the tutorial.
+_Note: if you are referencing this repo from the tutorial, anywhere you see
+`catcasts_phx13` or `catcasts_phx1_3` would be `catcasts` in the tutorial._
 
 ## The original version using Phoenix 1.2.1
 Repo: https://github.com/thebrianemory/catcasts
+
 Tutorial: https://thebrianemory.github.io/my-elixir-tutorial
