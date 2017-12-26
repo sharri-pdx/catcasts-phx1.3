@@ -29,4 +29,3 @@ config :catcasts_phx1_3, CatcastsPhx13.Repo,
   url: System.get_env("DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true
-

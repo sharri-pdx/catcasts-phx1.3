@@ -4,14 +4,13 @@ defmodule CatcastsPhx13.User do
   alias CatcastsPhx13.User
   alias CatcastsPhx13.Videos.Video
 
-
   schema "users" do
-    field :email, :string
-    field :first_name, :string
-    field :last_name, :string
-    field :provider, :string
-    field :token, :string
-    has_many :videos, Video
+    field(:email, :string)
+    field(:first_name, :string)
+    field(:last_name, :string)
+    field(:provider, :string)
+    field(:token, :string)
+    has_many(:videos, Video)
 
     timestamps()
   end

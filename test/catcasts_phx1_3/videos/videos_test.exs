@@ -6,8 +6,20 @@ defmodule CatcastsPhx13.VideosTest do
   describe "videos" do
     alias CatcastsPhx13.Videos.Video
 
-    @valid_attrs %{duration: "some duration", thumbnail: "some thumbnail", title: "some title", video_id: "some video_id", view_count: 42}
-    @update_attrs %{duration: "some updated duration", thumbnail: "some updated thumbnail", title: "some updated title", video_id: "some updated video_id", view_count: 43}
+    @valid_attrs %{
+      duration: "some duration",
+      thumbnail: "some thumbnail",
+      title: "some title",
+      video_id: "some video_id",
+      view_count: 42
+    }
+    @update_attrs %{
+      duration: "some updated duration",
+      thumbnail: "some updated thumbnail",
+      title: "some updated title",
+      video_id: "some updated video_id",
+      view_count: 43
+    }
     @invalid_attrs %{duration: nil, thumbnail: nil, title: nil, video_id: nil, view_count: nil}
 
     def video_fixture(attrs \\ %{}) do

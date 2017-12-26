@@ -26,13 +26,13 @@ defmodule CatcastsPhx13Web.ConnCase do
     end
   end
 
-
   setup tags do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(CatcastsPhx13.Repo)
+
     unless tags[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(CatcastsPhx13.Repo, {:shared, self()})
     end
+
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
-
 end

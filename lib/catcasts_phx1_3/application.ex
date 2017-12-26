@@ -11,7 +11,7 @@ defmodule CatcastsPhx13.Application do
       # Start the Ecto repository
       supervisor(CatcastsPhx13.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(CatcastsPhx13Web.Endpoint, []),
+      supervisor(CatcastsPhx13Web.Endpoint, [])
       # Start your own worker by calling: CatcastsPhx13.Worker.start_link(arg1, arg2, arg3)
       # worker(CatcastsPhx13.Worker, [arg1, arg2, arg3]),
     ]
